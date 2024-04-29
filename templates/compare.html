@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Performance Comparison</title>
+</head>
+<body>
+    <h1>Stock Performance Comparison</h1>
+    <form action="/compare" method="post">
+        <label for="start">Start Date:</label>
+        <input type="date" id="start" name="start" required>
+        <label for="end">End Date:</label>
+        <input type="date" id="end" name="end" required>
+        <fieldset>
+            <legend>Select Tickers:</legend>
+            {% for ticker in tickers %}
+                <input type="checkbox" name="symbols" value="{{ ticker }}"> {{ ticker }}<br>
+            {% endfor %}
+        </fieldset>
+        <input type="submit" value="Compare">
+    </form>
+    {% if symbols %}
+        <h2>Selected Symbols: {{ symbols }}</h2>
+        <div>
+            {{ data|safe }}
+        </div>
+    {% endif %}
+</body>
+</html>
