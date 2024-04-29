@@ -30,6 +30,7 @@ def prediction():
         symbol = request.form['symbol']
         period = int(request.form['period'])
         data = yf.download(symbol, period='5y')['Close']
+        current_price = data.iloc[-1]  # Last available stock price
         df = pd.DataFrame(data).reset_index()
         df.columns = ['ds', 'y']
 
@@ -37,11 +38,22 @@ def prediction():
         model.fit(df)
         future = model.make_future_dataframe(periods=period)
         forecast = model.predict(future)
+        predicted_price = forecast.iloc[-1]['yhat']  # Last predicted price
 
         fig = plot_plotly(model, forecast)
         graph_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
-        return render_template('prediction.html', plot=graph_json)
+        # Calculate profit or loss percentage
+        percentage_change = ((predicted_price - current_price) / current_price) * 100
+
+        # Determine recommendation based on predicted price
+        if predicted_price > current_price:
+            recommendation = 'Buy'
+        else:
+            recommendation = 'Sell'
+
+        return render_template('prediction.html', plot=graph_json, recommendation=recommendation,
+                               percentage_change=percentage_change, current_price=current_price)
     else:
         return render_template('prediction.html')
 

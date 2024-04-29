@@ -1,0 +1,10 @@
+[I 240429 14:05:52 app:44] JSON data has been updated.
+[E 240429 14:05:52 app:61] Symbol not found for stock name: TCS.NS and exchange: NSE
+[I 240429 14:06:13 app:48] JSON data is unchanged.
+[E 240429 14:06:13 app:61] Symbol not found for stock name: TCS.NS and exchange: NSE
+[I 240429 14:21:55 app:44] JSON data has been updated.
+[I 240429 14:21:55 smartConnect:113] in pool
+[I 240429 15:09:56 angel_ui:69] JSON data has been updated.
+[I 240429 15:09:56 angel_ui:20] Username: A55610949
+[I 240429 15:09:56 angel_ui:21] Available Funds: 100.0
+[I 240429 15:09:56 smartConnect:113] in pool

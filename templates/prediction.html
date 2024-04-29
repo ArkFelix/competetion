@@ -19,6 +19,9 @@
             var plotlyData = {{ plot|safe }};
             Plotly.newPlot('plot', plotlyData.data, plotlyData.layout);
         </script>
+        <p>Recommendation: {{ recommendation }}</p>
+        <p>Expected Change: {{ percentage_change | round(2) }}%</p>
+        <p>Current Price: ${{ current_price | round(2) }}</p>
     {% endif %}
 </body>
 </html>
